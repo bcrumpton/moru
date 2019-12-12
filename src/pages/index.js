@@ -5,6 +5,7 @@ import SEO from "../components/seo"
 import Header from "../components/header"
 import PrimordialUrge from "../images/primordial-urge.jpg"
 import PlagueWhispers from "../images/plague-whispers.jpg"
+import Merch from "../images/moru_preorders_outline.png"
 import Release from "../components/release"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBandcamp, faSpotify, faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -46,6 +47,12 @@ const IndexPage = () => (
       <div class="iframe-container">
         <iframe title="Moru - Deconstruct (live session)" width="100%" src="https://www.youtube.com/embed/tE9uHjAG1_o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+    </div>
+
+    <div className="content-box">
+      <h1 className="title">Merch</h1>
+      <img src={Merch} alt="Merch preorder"/>
+      Grab some merch at the <a href="https://delayedgratificationrecords.limitedrun.com/roster/moru">Delayed Gratification webstore</a>
     </div>
 
     <div className="content-box">

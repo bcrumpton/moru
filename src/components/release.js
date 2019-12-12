@@ -4,7 +4,7 @@ function Release (props) {
   return (
     <div className="release-box columns">
       <div className="column">
-        <img src={props.albumCover} alt={props.albumAlt} />
+        <img className="release-box__cover" src={props.albumCover} alt={props.albumAlt} />
       </div>
       <div className="column">
         <p className="release-box__name">{props.name}</p>
