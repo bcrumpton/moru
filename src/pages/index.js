@@ -1,17 +1,16 @@
 import React from "react"
+import { graphql } from 'gatsby'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Header from "../components/header"
-import PrimordialUrge from "../images/primordial-urge.jpg"
-import PlagueWhispers from "../images/plague-whispers.jpg"
-import Merch from "../images/moru_preorders_outline.png"
 import Release from "../components/release"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBandcamp, faSpotify, faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import "./mystyles.scss"
 
-const IndexPage = () => (
+
+const IndexPage = (props) => (
   <Layout>
     <SEO title="Home" />
     <Header />
@@ -29,14 +28,14 @@ const IndexPage = () => (
       <Release 
         name="Primordial Urge - 2019"
         label="Delayed Gratification Records"
-        albumCover={PrimordialUrge} 
+        albumCover={props.data.PrimordialUrge.childImageSharp.fluid} 
         albumAlt="Primordial Urge album cover"
         spotifyEmbed="https://open.spotify.com/embed/album/5jtYn4L1m6I3BjpUdOj3Nt"
       />
       <Release 
         name="Plague Whispers - 2017"
         label="Delayed Gratification Records"
-        albumCover={PlagueWhispers}
+        albumCover={props.data.PlagueWhispers.childImageSharp.fluid}
         albumAlt="Plague Whispers album cover"
         spotifyEmbed="https://open.spotify.com/embed/album/1TI6RxvCPAZKYKuFLFcWJ1"
       />
@@ -44,14 +43,14 @@ const IndexPage = () => (
 
     <div className="content-box">
       <h1 className="title">Video</h1>
-      <div class="iframe-container">
-        <iframe title="Moru - Deconstruct (live session)" width="100%" src="https://www.youtube.com/embed/tE9uHjAG1_o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div className="iframe-container">
+        <iframe title="Moru - Deconstruct (live session)" width="100%" src="https://www.youtube.com/embed/tE9uHjAG1_o" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </div>
     </div>
 
     <div className="content-box">
       <h1 className="title">Merch</h1>
-      <img src={Merch} alt="Merch preorder"/>
+      <img src={props.data.MoruPreorders.childImageSharp.fluid} alt="Merch preorder"/>
       Grab some merch at the <a href="https://delayedgratificationrecords.limitedrun.com/roster/moru">Delayed Gratification webstore</a>
     </div>
 
@@ -63,3 +62,26 @@ const IndexPage = () => (
 )
 
 export default IndexPage
+
+export const fluidImage = graphql`
+fragment fluidImage on File {
+  childImageSharp {
+    fluid(maxWidth: 1000) {
+      ...GatsbyImageSharpFluid
+    }
+  }
+}
+`;
+
+export const query = graphql`
+query {
+  PrimordialUrge: file(relativePath: { eq: "primordial-urge.jpg" }) {
+    ...fluidImage
+  }
+  PlagueWhispers: file(relativePath: { eq: "plague-whispers.jpg" }) {
+    ...fluidImage
+  }
+  MoruPreorders: file(relativePath: { eq: "moru_preorders_outline.png" }) {
+    ...fluidImage
+  }
+}`
