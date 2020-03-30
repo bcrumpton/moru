@@ -1,9 +1,9 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import MoruLogo from "../images/moru-logo-white-outline.png"
+import MoruLogo from "./MoruLogo"
 
-const Header = ({ siteTitle }) => (
+const Header = ({data},{ siteTitle }) => (
   <header
     style={{
       marginBottom: `1rem`,
@@ -24,7 +24,7 @@ const Header = ({ siteTitle }) => (
           textDecoration: `none`,
         }}
       >
-        <img className="moru-logo" src={MoruLogo} alt="Band logo" />
+        <MoruLogo />
       </Link>
     </div>
   </header>
